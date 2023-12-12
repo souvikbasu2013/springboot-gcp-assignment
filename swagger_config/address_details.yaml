@@ -1,0 +1,168 @@
+openapi: 3.0.3
+info:
+  title: Swagger GCP assignment address details - OpenAPI 3.0.3
+  description: |-
+    Swagger GCP assignment for address details management
+  termsOfService: http://swagger.io/terms/
+  contact:
+    email: im.souvik.basu@gmail.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.11
+servers:
+  - url: http://localhost:8080/api/v1
+tags:
+  - name: address-details
+    description: address details
+paths:
+  /address-details/update/{partnerKey}:
+    put:
+      tags:
+        - address-details
+      summary: Update an existing address details
+      description: Update an existing address details by Id
+      parameters:
+        - name: partnerKey
+          in: path
+          description: ID of address details to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      operationId: updateAddressDetails
+      requestBody:
+        description: Update an existent address details in the application
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddressDetails'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/AddressDetails'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddressDetails'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/AddressDetails'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: address details not found
+        '405':
+          description: Validation exception
+  /address-details/create:
+    post:
+      tags:
+        - address-details
+      summary: Add a new address details to the application
+      description: Add a new address details to the application
+      operationId: addAddressDetails
+      requestBody:
+        description: Create a new address details in the application
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddressDetails'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/AddressDetails'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            text/plain:
+              schema:
+                type: integer
+                example: 12345
+        '405':
+          description: Invalid input
+  /address-details/get/{partnerKey}:
+    get:
+      tags:
+        - address-details
+      summary: Find address details by ID
+      description: Returns a single address details
+      operationId: getAddressDetailsById
+      parameters:
+        - name: partnerKey
+          in: path
+          description: ID of address details to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddressDetails'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/AddressDetails'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: address details not found
+  /address-details/delete/{partnerKey}:
+    delete:
+      tags:
+        - address-details
+      summary: Deletes a address details
+      description: delete a address details
+      operationId: deleteAddressDetails
+      parameters:
+        - name: partnerKey
+          in: path
+          description: ID of address details to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Successful deletion
+        '400':
+          description: Invalid value
+components:
+  schemas:
+    AddressDetails:
+      type: object
+      properties:
+        partnerKey:
+          type: integer
+          format: int64
+          example: 1
+        houseNumber:
+          type: string
+          example: "123"
+        street:
+          type: string
+          example: "NW Middleton Row, St. Robert,"
+        postalCode:
+          type: integer
+          example: 2546
+        town:
+          type: string
+          example: "Kingston,"
+      xml:
+        name: AddressDetails
+  requestBodies:
+    AddressDetails:
+      description: Address Details that needs to be added to the application
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AddressDetails'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/AddressDetails'

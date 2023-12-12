@@ -1,0 +1,191 @@
+openapi: 3.0.3
+info:
+  title: Swagger GCP assignment basic details - OpenAPI 3.0.3
+  description: |-
+    Swagger GCP assignment for basic details management
+  termsOfService: http://swagger.io/terms/
+  contact:
+    email: im.souvik.basu@gmail.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.11
+servers:
+  - url: http://localhost:8080/api/v1
+tags:
+  - name: basic-details
+    description: Partner details
+paths:
+  /basic-details/update/{partnerKey}:
+    put:
+      tags:
+        - basic-details
+      summary: Update an existing basic details
+      description: Update an existing basic details by Id
+      parameters:
+        - name: partnerKey
+          in: path
+          description: ID of basic details to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      operationId: updateBasicDetails
+      requestBody:
+        description: Update an existent basic details in the application
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BasicDetails'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/BasicDetails'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicDetails'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/BasicDetails'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: basic details not found
+        '405':
+          description: Validation exception
+  /basic-details/create:
+    post:
+      tags:
+        - basic-details
+      summary: Add a new basic details to the application
+      description: Add a new basic details to the application
+      operationId: addBasicDetails
+      requestBody:
+        description: Create a new basic details in the application
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BasicDetails'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/BasicDetails'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            text/plain:
+              schema:
+                type: integer
+                example: 12345
+        '405':
+          description: Invalid input
+  /basic-details/get/{partnerKey}:
+    get:
+      tags:
+        - basic-details
+      summary: Find basic details by ID
+      description: Returns a single basic details
+      operationId: getBasicDetailsById
+      parameters:
+        - name: partnerKey
+          in: path
+          description: ID of basic details to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicDetails'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/BasicDetails'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: basic details not found
+  /basic-details/delete/{partnerKey}:
+    delete:
+      tags:
+        - basic-details
+      summary: Deletes a basic details
+      description: delete a basic details
+      operationId: deleteBasicDetails
+      parameters:
+        - name: partnerKey
+          in: path
+          description: ID of basic details to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Successful deletion
+        '400':
+          description: Invalid value
+components:
+  schemas:
+    BasicDetails:
+      required:
+        - firstName
+        - lastName
+        - dob
+        - age
+      type: object
+      properties:
+        partnerKey:
+          type: integer
+          format: int64
+          example: 111
+        firstName:
+          type: string
+          example: Souvik
+        lastName:
+          type: string
+          example: Basu
+        age:
+          type: integer
+          format: int64
+          example: 10
+        dob:
+          type: string
+          format: yyyy-mm-dd
+          example: 2023-12-15
+#        AddressDetails:
+#          $ref: '#/components/schemas/AddressDetails'
+#        ContactDetails:
+#          $ref: '#/components/schemas/ContactDetails'
+      xml:
+        name: BasicDetails
+    ApiResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        type:
+          type: string
+        message:
+          type: string
+      xml:
+        name: '##default'
+  requestBodies:
+    BasicDetails:
+      description: Basic Details that needs to be added to the application
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BasicDetails'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/BasicDetails'

@@ -1,0 +1,492 @@
+openapi: 3.0.3
+info:
+  title: Swagger GCP assignment Partner details - OpenAPI 3.0.3
+  description: |-
+    Swagger GCP assignment for Partner details management
+  termsOfService: http://swagger.io/terms/
+  contact:
+    email: im.souvik.basu@gmail.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.11
+servers:
+  - url: http://localhost:8080/api/v1
+tags:
+  - name: basic-details
+    description: Partner details
+  - name: address-details
+    description: Address details
+  - name: contact-details
+    description: Contact details
+paths:
+  /basic-details/update/{basic_id}:
+    put:
+      tags:
+        - basic-details
+      summary: Update an existing basic details
+      description: Update an existing basic details by Id
+      parameters:
+        - name: basic_id
+          in: path
+          description: ID of basic details to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      operationId: updateBasicDetails
+      requestBody:
+        description: Update an existent basic details in the application
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BasicDetails'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/BasicDetails'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/BasicDetails'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicDetails'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/BasicDetails'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: basic details not found
+        '405':
+          description: Validation exception
+  /basic-details/create:
+    post:
+      tags:
+        - basic-details
+      summary: Add a new basic details to the application
+      description: Add a new basic details to the application
+      operationId: addBasicDetails
+      requestBody:
+        description: Create a new basic details in the application
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BasicDetails'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/BasicDetails'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/BasicDetails'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicDetails'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/BasicDetails'
+        '405':
+          description: Invalid input
+  /basic-details/get/{basic_id}:
+    get:
+      tags:
+        - basic-details
+      summary: Find basic details by ID
+      description: Returns a single basic details
+      operationId: getBasicDetailsById
+      parameters:
+        - name: basic_id
+          in: path
+          description: ID of basic details to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicDetails'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/BasicDetails'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: basic details not found
+  /basic-details/delete/{basic_id}:
+    delete:
+      tags:
+        - basic-details
+      summary: Deletes a basic details
+      description: delete a basic details
+      operationId: deleteBasicDetails
+      parameters:
+        - name: basic_id
+          in: path
+          description: ID of basic details to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Successful deletion
+        '400':
+          description: Invalid value
+  /address-details/update/{address_id}:
+    put:
+      tags:
+        - address-details
+      summary: Update an existing address details
+      description: Update an existing address details by Id
+      parameters:
+        - name: address_id
+          in: path
+          description: ID of address details to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      operationId: updateAddressDetails
+      requestBody:
+        description: Update an existent address details in the application
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddressDetails'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/AddressDetails'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AddressDetails'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddressDetails'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/AddressDetails'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: address details not found
+        '405':
+          description: Validation exception
+  /address-details/create:
+    post:
+      tags:
+        - address-details
+      summary: Add a new address details to the application
+      description: Add a new address details to the application
+      operationId: addAddressDetails
+      requestBody:
+        description: Create a new address details in the application
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddressDetails'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/AddressDetails'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AddressDetails'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddressDetails'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/AddressDetails'
+        '405':
+          description: Invalid input
+  /address-details/get/{address_id}:
+    get:
+      tags:
+        - address-details
+      summary: Find basic details by ID
+      description: Returns a single address details
+      operationId: getAddressDetailsById
+      parameters:
+        - name: address_id
+          in: path
+          description: ID of address details to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddressDetails'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/AddressDetails'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: address details not found
+  /address-details/delete/{address_id}:
+    delete:
+      tags:
+        - address-details
+      summary: Deletes a address details
+      description: delete a address details
+      operationId: deleteAddressDetails
+      parameters:
+        - name: address_id
+          in: path
+          description: ID of address details to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Successful deletion
+        '400':
+          description: Invalid value
+  /contact-details/update/{contact_id}:
+    put:
+      tags:
+        - contact-details
+      summary: Update an existing contact
+      description: Update an existing contact details by Id
+      parameters:
+        - name: contact_id
+          in: path
+          description: ID of contact details to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      operationId: updateContactDetails
+      requestBody:
+        description: Update an existent contact details in the application
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContactDetails'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ContactDetails'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ContactDetails'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContactDetails'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ContactDetails'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: contact details not found
+        '405':
+          description: Validation exception
+  /contact-details/create:
+    post:
+      tags:
+        - contact-details
+      summary: Add a new contact details to the application
+      description: Add a new contact details to the application
+      operationId: addContactDetails
+      requestBody:
+        description: Create a new contact details in the application
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContactDetails'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ContactDetails'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ContactDetails'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContactDetails'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ContactDetails'
+        '405':
+          description: Invalid input
+  /contact-details/get/{contact_id}:
+    get:
+      tags:
+        - contact-details
+      summary: Find basic details by ID
+      description: Returns a single contact details
+      operationId: getContactDetailsById
+      parameters:
+        - name: contact_id
+          in: path
+          description: ID of contact details to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContactDetails'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ContactDetails'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: contact details not found
+  /contact-details/delete/{contact_id}:
+    delete:
+      tags:
+        - contact-details
+      summary: Deletes a contact details
+      description: delete a contact details
+      operationId: deleteContactDetails
+      parameters:
+        - name: contact_id
+          in: path
+          description: ID of contact details to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Successful deletion
+        '400':
+          description: Invalid value
+components:
+  schemas:
+    AddressDetails:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+        houseNumber:
+          type: string
+          example: "123"
+        street:
+          type: string
+          example: "NW Middleton Row, St. Robert,"
+        postalCode:
+          type: integer
+          example: 2546
+        town:
+          type: string
+          example: "Kingston,"
+      xml:
+        name: AddressDetails
+    ContactDetails:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+        email:
+          type: string
+          example: "abc@tcs.com"
+        mobile:
+          type: string
+          example: "9057340573"
+        telephone:
+          type: string
+          example: "03327340573"
+      xml:
+        name: ContactDetails
+    BasicDetails:
+      required:
+        - firstName
+        - lastName
+        - dob
+        - age
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 111
+        firstName:
+          type: string
+          example: Souvik
+        lastName:
+          type: string
+          example: Basu
+        age:
+          type: integer
+          format: int64
+          example: 10
+        dob:
+          type: string
+          format: yyyy-mm-dd
+          example: 2023-12-15
+        AddressDetails:
+          $ref: '#/components/schemas/AddressDetails'
+        ContactDetails:
+          $ref: '#/components/schemas/ContactDetails'
+      xml:
+        name: BasicDetails
+    ApiResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        type:
+          type: string
+        message:
+          type: string
+      xml:
+        name: '##default'
+  requestBodies:
+    BasicDetails:
+      description: Basic Details that needs to be added to the application
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BasicDetails'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/BasicDetails'	
