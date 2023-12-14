@@ -52,12 +52,12 @@ public class BasicDetailsService {
 		}
 	}
 	
-	public void deleteBasicDetailsEntity(Long id){
+	public void deleteBasicDetailsEntity(Long id) throws BasicDetailsNotFoundException{
 		Optional<BasicDetailsEntity> optionalBasicDetailsEntity = BasicDetailsRepository.findById(id);
 		if(!optionalBasicDetailsEntity.isEmpty()) {
 			BasicDetailsRepository.deleteById(id);
 		}else {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"BasicDetailsEntity not found with the id, please provide correct id...");
+			throw new BasicDetailsNotFoundException("BasicDetailsEntity not found with the id, please provide correct id...");
 		}
 		
 	}

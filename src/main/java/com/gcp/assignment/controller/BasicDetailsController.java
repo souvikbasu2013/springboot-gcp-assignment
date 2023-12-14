@@ -1,5 +1,7 @@
 package com.gcp.assignment.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,14 +31,20 @@ public class BasicDetailsController implements BasicDetailsApi{
 
 	@Override
 	public ResponseEntity<Integer> addBasicDetails(BasicDetails body) {
-		// TODO Auto-generated method stub
-		return null;
+		BasicDetailsEntity basicDetails = new BasicDetailsEntity();
+		BeanUtils.copyProperties(body,basicDetails);
+		basicDetails =  basicDetailsService.createBasicDetailsEntity(basicDetails);
+		return new ResponseEntity<Integer>(basicDetails.getPartnerKey().intValue(),HttpStatus.CREATED);
 	}
 
 	@Override
 	public ResponseEntity<Void> deleteBasicDetails(Long partnerKey) {
-		// TODO Auto-generated method stub
-		return null;
+		try{
+			basicDetailsService.deleteBasicDetailsEntity(partnerKey);
+			return new ResponseEntity<Void>(HttpStatus.OK);
+		}catch (BasicDetailsNotFoundException e) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+		}
 	}
 
 	@Override
@@ -53,8 +61,16 @@ public class BasicDetailsController implements BasicDetailsApi{
 
 	@Override
 	public ResponseEntity<BasicDetails> updateBasicDetails(Long partnerKey, BasicDetails body) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			BasicDetailsEntity basicDetails = new BasicDetailsEntity();
+			BeanUtils.copyProperties(body,basicDetails);
+			basicDetails = basicDetailsService.updateBasicDetailsEntity(basicDetails, partnerKey);
+			BasicDetails basicDetailsDTO = new BasicDetails();
+			BeanUtils.copyProperties(basicDetails,basicDetailsDTO);
+			return new ResponseEntity<BasicDetails>(basicDetailsDTO,HttpStatus.OK);
+		} catch (BasicDetailsNotFoundException e) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+		}
 	}
 
 }

@@ -37,9 +37,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/BasicDetails'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/BasicDetails'
         required: true
       responses:
         '200':
@@ -48,9 +45,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BasicDetails'          
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/BasicDetails'
         '400':
           description: Invalid ID supplied
         '404':
@@ -68,9 +62,6 @@ paths:
         description: Create a new basic details in the application
         content:
           application/json:
-            schema:
-              $ref: '#/components/schemas/BasicDetails'
-          application/xml:
             schema:
               $ref: '#/components/schemas/BasicDetails'
         required: true
@@ -106,9 +97,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BasicDetails'          
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/BasicDetails'
         '400':
           description: Invalid ID supplied
         '404':

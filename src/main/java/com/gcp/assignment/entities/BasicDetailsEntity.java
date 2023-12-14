@@ -32,6 +32,7 @@ public class BasicDetailsEntity {
 
 	@ApiModelProperty(notes = "Auto generated unique id", required = true)
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)	
 	@Column(name = "PARTNERKEY")
 	private Long partnerKey;
 	
@@ -43,11 +44,11 @@ public class BasicDetailsEntity {
 	private String lastName;
 	
 	@ApiModelProperty(notes = "Age", required = true)
-	@Column(name = "AGE", length = 50, nullable = false, unique = true)
+	@Column(name = "AGE", length = 50, nullable = false)
 	private Long age;
 	
 	@ApiModelProperty(notes = "Social Security Number", required = true)
-	@Column(name = "DOB", length = 50, nullable = false, unique = true)
+	@Column(name = "DOB", length = 50, nullable = false)
 	private String dob;
 	
 }

@@ -42,8 +42,8 @@ public interface BasicDetailsApi {
         
         @ApiResponse(responseCode = "405", description = "Invalid input") })
     @RequestMapping(value = "/basic-details/create",
-        produces = { "text/plain" }, 
-        consumes = { "application/json", "application/xml" }, 
+        produces = { "application/json" }, 
+        consumes = { "application/json"}, 
         method = RequestMethod.POST)
     ResponseEntity<Integer> addBasicDetails(@Parameter(in = ParameterIn.DEFAULT, description = "Create a new basic details in the application", required=true, schema=@Schema()) @Valid @RequestBody BasicDetails body);
 
