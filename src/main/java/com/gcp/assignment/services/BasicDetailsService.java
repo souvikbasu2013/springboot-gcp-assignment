@@ -11,6 +11,8 @@ import org.springframework.web.server.ResponseStatusException;
 import com.gcp.assignment.entities.BasicDetailsEntity;
 import com.gcp.assignment.exception.*;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class BasicDetailsService {
 
@@ -24,8 +26,8 @@ public class BasicDetailsService {
 		return BasicDetailsRepository.save(BasicDetailsEntity);
 	}
 	
-	public BasicDetailsEntity getBasicDetailsEntity(Long id) throws BasicDetailsNotFoundException {
-		Optional<BasicDetailsEntity> optionalBasicDetailsEntity = BasicDetailsRepository.findById(id);
+	public BasicDetailsEntity getBasicDetailsEntity(String partnerKey) throws BasicDetailsNotFoundException {
+		Optional<BasicDetailsEntity> optionalBasicDetailsEntity = BasicDetailsRepository.findByPartnerKey(partnerKey);
 		
 		return optionalBasicDetailsEntity.orElseThrow(() ->  new BasicDetailsNotFoundException("BasicDetails not found with the partnerKey..."));
 		/*
@@ -43,19 +45,19 @@ public class BasicDetailsService {
 		}
 	}
 	
-	public BasicDetailsEntity updateBasicDetailsEntity(BasicDetailsEntity BasicDetailsEntity, Long id) throws BasicDetailsNotFoundException {
-		Optional<BasicDetailsEntity> optionalBasicDetailsEntity = BasicDetailsRepository.findById(id);
+	public BasicDetailsEntity updateBasicDetailsEntity(BasicDetailsEntity BasicDetailsEntity, String partnerKey) throws BasicDetailsNotFoundException {
+		Optional<BasicDetailsEntity> optionalBasicDetailsEntity = BasicDetailsRepository.findByPartnerKey(partnerKey);
 		if(!optionalBasicDetailsEntity.isEmpty()) {
 			return BasicDetailsRepository.save(BasicDetailsEntity);
 		}else {
 			throw new BasicDetailsNotFoundException("BasicDetailsEntity not found with the id...");
 		}
 	}
-	
-	public void deleteBasicDetailsEntity(Long id) throws BasicDetailsNotFoundException{
-		Optional<BasicDetailsEntity> optionalBasicDetailsEntity = BasicDetailsRepository.findById(id);
+	@Transactional
+	public void deleteBasicDetailsEntity(String partnerKey) throws BasicDetailsNotFoundException{
+		Optional<BasicDetailsEntity> optionalBasicDetailsEntity = BasicDetailsRepository.findByPartnerKey(partnerKey);
 		if(!optionalBasicDetailsEntity.isEmpty()) {
-			BasicDetailsRepository.deleteById(id);
+			BasicDetailsRepository.deleteByPartnerKey(partnerKey);
 		}else {
 			throw new BasicDetailsNotFoundException("BasicDetailsEntity not found with the id, please provide correct id...");
 		}

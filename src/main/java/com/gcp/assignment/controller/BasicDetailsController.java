@@ -30,15 +30,17 @@ public class BasicDetailsController implements BasicDetailsApi{
 	}
 
 	@Override
-	public ResponseEntity<Integer> addBasicDetails(BasicDetails body) {
+	public ResponseEntity<BasicDetails> addBasicDetails(BasicDetails body) {
 		BasicDetailsEntity basicDetails = new BasicDetailsEntity();
 		BeanUtils.copyProperties(body,basicDetails);
 		basicDetails =  basicDetailsService.createBasicDetailsEntity(basicDetails);
-		return new ResponseEntity<Integer>(basicDetails.getPartnerKey().intValue(),HttpStatus.CREATED);
+		BasicDetails basicDetailsDTO = new BasicDetails();
+		BeanUtils.copyProperties(basicDetails, basicDetailsDTO);
+		return new ResponseEntity<BasicDetails>(basicDetailsDTO,HttpStatus.CREATED);
 	}
 
 	@Override
-	public ResponseEntity<Void> deleteBasicDetails(Long partnerKey) {
+	public ResponseEntity<Void> deleteBasicDetails(String partnerKey) {
 		try{
 			basicDetailsService.deleteBasicDetailsEntity(partnerKey);
 			return new ResponseEntity<Void>(HttpStatus.OK);
@@ -48,7 +50,7 @@ public class BasicDetailsController implements BasicDetailsApi{
 	}
 
 	@Override
-	public ResponseEntity<BasicDetails> getBasicDetailsById(Long partnerKey) {
+	public ResponseEntity<BasicDetails> getBasicDetailsById(String partnerKey) {
 		 try {
 				BasicDetailsEntity basicDetails= basicDetailsService.getBasicDetailsEntity(partnerKey);
 				BasicDetails basicDetailsDTO = new BasicDetails();
@@ -60,7 +62,7 @@ public class BasicDetailsController implements BasicDetailsApi{
 	}
 
 	@Override
-	public ResponseEntity<BasicDetails> updateBasicDetails(Long partnerKey, BasicDetails body) {
+	public ResponseEntity<BasicDetails> updateBasicDetails(String partnerKey, BasicDetails body) {
 		try {
 			BasicDetailsEntity basicDetails = new BasicDetailsEntity();
 			BeanUtils.copyProperties(body,basicDetails);
@@ -72,5 +74,4 @@ public class BasicDetailsController implements BasicDetailsApi{
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
 		}
 	}
-
 }

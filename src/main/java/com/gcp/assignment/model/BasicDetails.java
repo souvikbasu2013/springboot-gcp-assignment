@@ -12,12 +12,15 @@ import javax.validation.constraints.*;
  * BasicDetails
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-12-14T20:29:19.113932400+05:30[Asia/Calcutta]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-12-15T17:08:07.614018800+05:30[Asia/Calcutta]")
 
 
 public class BasicDetails   {
+  @JsonProperty("id")
+  private Long id = null;
+
   @JsonProperty("partnerKey")
-  private Long partnerKey = null;
+  private String partnerKey = null;
 
   @JsonProperty("firstName")
   private String firstName = null;
@@ -31,7 +34,26 @@ public class BasicDetails   {
   @JsonProperty("dob")
   private String dob = null;
 
-  public BasicDetails partnerKey(Long partnerKey) {
+  public BasicDetails id(Long id) {
+    this.id = id;
+    return this;
+  }
+
+  /**
+   * Get id
+   * @return id
+   **/
+  @Schema(example = "111", description = "")
+  
+    public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  public BasicDetails partnerKey(String partnerKey) {
     this.partnerKey = partnerKey;
     return this;
   }
@@ -40,13 +62,14 @@ public class BasicDetails   {
    * Get partnerKey
    * @return partnerKey
    **/
-  @Schema(example = "111", description = "")
-  
-    public Long getPartnerKey() {
+  @Schema(example = "KEY123", required = true, description = "")
+      @NotNull
+
+    public String getPartnerKey() {
     return partnerKey;
   }
 
-  public void setPartnerKey(Long partnerKey) {
+  public void setPartnerKey(String partnerKey) {
     this.partnerKey = partnerKey;
   }
 
@@ -140,7 +163,8 @@ public class BasicDetails   {
       return false;
     }
     BasicDetails basicDetails = (BasicDetails) o;
-    return Objects.equals(this.partnerKey, basicDetails.partnerKey) &&
+    return Objects.equals(this.id, basicDetails.id) &&
+        Objects.equals(this.partnerKey, basicDetails.partnerKey) &&
         Objects.equals(this.firstName, basicDetails.firstName) &&
         Objects.equals(this.lastName, basicDetails.lastName) &&
         Objects.equals(this.age, basicDetails.age) &&
@@ -149,7 +173,7 @@ public class BasicDetails   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(partnerKey, firstName, lastName, age, dob);
+    return Objects.hash(id, partnerKey, firstName, lastName, age, dob);
   }
 
   @Override
@@ -157,6 +181,7 @@ public class BasicDetails   {
     StringBuilder sb = new StringBuilder();
     sb.append("class BasicDetails {\n");
     
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    partnerKey: ").append(toIndentedString(partnerKey)).append("\n");
     sb.append("    firstName: ").append(toIndentedString(firstName)).append("\n");
     sb.append("    lastName: ").append(toIndentedString(lastName)).append("\n");

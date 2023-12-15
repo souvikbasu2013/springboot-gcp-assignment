@@ -33,8 +33,12 @@ public class BasicDetailsEntity {
 	@ApiModelProperty(notes = "Auto generated unique id", required = true)
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)	
-	@Column(name = "PARTNERKEY")
-	private Long partnerKey;
+	@Column(name = "ID")
+	private Long id;
+	
+	@Column(name = "PARTNERKEY", length = 50, nullable = true)
+	@Size(min = 2,message = "First Name should be atleast 2 characters")
+	private String partnerKey;
 	
 	@Column(name = "FIRST_NAME", length = 50, nullable = true)
 	@Size(min = 2,message = "First Name should be atleast 2 characters")

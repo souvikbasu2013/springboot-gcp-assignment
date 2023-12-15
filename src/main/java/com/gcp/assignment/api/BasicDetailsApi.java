@@ -32,20 +32,20 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-12-14T20:29:19.113932400+05:30[Asia/Calcutta]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-12-15T17:08:07.614018800+05:30[Asia/Calcutta]")
 @Validated
 public interface BasicDetailsApi {
 
     @Operation(summary = "Add a new basic details to the application", description = "Add a new basic details to the application", tags={ "basic-details" })
     @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "Successful operation", content = @Content(mediaType = "text/plain", schema = @Schema(implementation = Integer.class))),
+        @ApiResponse(responseCode = "200", description = "Successful operation", content = @Content(mediaType = "application/json", schema = @Schema(implementation = BasicDetails.class))),
         
         @ApiResponse(responseCode = "405", description = "Invalid input") })
     @RequestMapping(value = "/basic-details/create",
         produces = { "application/json" }, 
-        consumes = { "application/json"}, 
+        consumes = { "application/json" }, 
         method = RequestMethod.POST)
-    ResponseEntity<Integer> addBasicDetails(@Parameter(in = ParameterIn.DEFAULT, description = "Create a new basic details in the application", required=true, schema=@Schema()) @Valid @RequestBody BasicDetails body);
+    ResponseEntity<BasicDetails> addBasicDetails(@Parameter(in = ParameterIn.DEFAULT, description = "Create a new basic details in the application", required=true, schema=@Schema()) @Valid @RequestBody BasicDetails body);
 
 
     @Operation(summary = "Deletes a basic details", description = "delete a basic details", tags={ "basic-details" })
@@ -55,7 +55,7 @@ public interface BasicDetailsApi {
         @ApiResponse(responseCode = "400", description = "Invalid value") })
     @RequestMapping(value = "/basic-details/delete/{partnerKey}",
         method = RequestMethod.DELETE)
-    ResponseEntity<Void> deleteBasicDetails(@Parameter(in = ParameterIn.PATH, description = "ID of basic details to return", required=true, schema=@Schema()) @PathVariable("partnerKey") Long partnerKey);
+    ResponseEntity<Void> deleteBasicDetails(@Parameter(in = ParameterIn.PATH, description = "ID of basic details to return", required=true, schema=@Schema()) @PathVariable("partnerKey") String partnerKey);
 
 
     @Operation(summary = "Find basic details by ID", description = "Returns a single basic details", tags={ "basic-details" })
@@ -66,9 +66,9 @@ public interface BasicDetailsApi {
         
         @ApiResponse(responseCode = "404", description = "basic details not found") })
     @RequestMapping(value = "/basic-details/get/{partnerKey}",
-        produces = { "application/json"}, 
+        produces = { "application/json" }, 
         method = RequestMethod.GET)
-    ResponseEntity<BasicDetails> getBasicDetailsById(@Parameter(in = ParameterIn.PATH, description = "ID of basic details to return", required=true, schema=@Schema()) @PathVariable("partnerKey") Long partnerKey);
+    ResponseEntity<BasicDetails> getBasicDetailsById(@Parameter(in = ParameterIn.PATH, description = "ID of basic details to return", required=true, schema=@Schema()) @PathVariable("partnerKey") String partnerKey);
 
 
     @Operation(summary = "Update an existing basic details", description = "Update an existing basic details by Id", tags={ "basic-details" })
@@ -81,10 +81,10 @@ public interface BasicDetailsApi {
         
         @ApiResponse(responseCode = "405", description = "Validation exception") })
     @RequestMapping(value = "/basic-details/update/{partnerKey}",
-        produces = { "application/json", "application/xml" }, 
-        consumes = { "application/json", "application/xml" }, 
+        produces = { "application/json" }, 
+        consumes = { "application/json" }, 
         method = RequestMethod.PUT)
-    ResponseEntity<BasicDetails> updateBasicDetails(@Parameter(in = ParameterIn.PATH, description = "ID of basic details to return", required=true, schema=@Schema()) @PathVariable("partnerKey") Long partnerKey, @Parameter(in = ParameterIn.DEFAULT, description = "Update an existent basic details in the application", required=true, schema=@Schema()) @Valid @RequestBody BasicDetails body);
+    ResponseEntity<BasicDetails> updateBasicDetails(@Parameter(in = ParameterIn.PATH, description = "ID of basic details to return", required=true, schema=@Schema()) @PathVariable("partnerKey") String partnerKey, @Parameter(in = ParameterIn.DEFAULT, description = "Update an existent basic details in the application", required=true, schema=@Schema()) @Valid @RequestBody BasicDetails body);
 
 }
 

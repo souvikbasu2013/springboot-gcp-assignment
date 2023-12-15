@@ -28,8 +28,7 @@ paths:
           description: ID of basic details to return
           required: true
           schema:
-            type: integer
-            format: int64
+            type: string
       operationId: updateBasicDetails
       requestBody:
         description: Update an existent basic details in the application
@@ -69,10 +68,9 @@ paths:
         '200':
           description: Successful operation
           content:
-            text/plain:
+            application/json:
               schema:
-                type: integer
-                example: 12345
+                $ref: '#/components/schemas/BasicDetails'
         '405':
           description: Invalid input
   /basic-details/get/{partnerKey}:
@@ -88,8 +86,7 @@ paths:
           description: ID of basic details to return
           required: true
           schema:
-            type: integer
-            format: int64
+            type: string
       responses:
         '200':
           description: successful operation
@@ -114,8 +111,7 @@ paths:
           description: ID of basic details to return
           required: true
           schema:
-            type: integer
-            format: int64
+            type: string
       responses:
         '200':
           description: Successful deletion
@@ -125,16 +121,20 @@ components:
   schemas:
     BasicDetails:
       required:
+        - partnerKey
         - firstName
         - lastName
         - dob
         - age
       type: object
       properties:
-        partnerKey:
+        id:
           type: integer
           format: int64
           example: 111
+        partnerKey:
+          type: string
+          example: KEY123
         firstName:
           type: string
           example: Souvik
