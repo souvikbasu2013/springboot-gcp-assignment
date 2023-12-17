@@ -12,7 +12,7 @@ import javax.validation.constraints.*;
  * BasicDetails
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-12-15T17:08:07.614018800+05:30[Asia/Calcutta]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-12-18T00:24:05.308992+05:30[Asia/Calcutta]")
 
 
 public class BasicDetails   {
