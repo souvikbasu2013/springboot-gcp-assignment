@@ -18,7 +18,7 @@ import com.gcp.assignment.model.BasicDetails;
 import com.gcp.assignment.services.BasicDetailsService;
 
 @RestController
-//@RequestMapping(value = "/basic-details/")
+@RequestMapping(value = "/api/v1")
 public class BasicDetailsController implements BasicDetailsApi{
 
 	@Autowired
