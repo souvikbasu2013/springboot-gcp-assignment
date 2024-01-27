@@ -3,7 +3,11 @@ package com.gcp.assignment.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.gcp.assignment.model.Address;
+import com.gcp.assignment.model.Party;
 import io.swagger.v3.oas.annotations.media.Schema;
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
@@ -12,7 +16,7 @@ import javax.validation.constraints.*;
  * BasicDetails
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-12-18T00:24:05.308992+05:30[Asia/Calcutta]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2024-01-27T21:22:55.769806700+05:30[Asia/Calcutta]")
 
 
 public class BasicDetails   {
@@ -33,6 +37,13 @@ public class BasicDetails   {
 
   @JsonProperty("dob")
   private String dob = null;
+
+  @JsonProperty("PartyDetails")
+  private Party partyDetails = null;
+
+  @JsonProperty("addresses")
+  @Valid
+  private List<Address> addresses = null;
 
   public BasicDetails id(Long id) {
     this.id = id;
@@ -153,6 +164,53 @@ public class BasicDetails   {
     this.dob = dob;
   }
 
+  public BasicDetails partyDetails(Party partyDetails) {
+    this.partyDetails = partyDetails;
+    return this;
+  }
+
+  /**
+   * Get partyDetails
+   * @return partyDetails
+   **/
+  @Schema(description = "")
+  
+    @Valid
+    public Party getPartyDetails() {
+    return partyDetails;
+  }
+
+  public void setPartyDetails(Party partyDetails) {
+    this.partyDetails = partyDetails;
+  }
+
+  public BasicDetails addresses(List<Address> addresses) {
+    this.addresses = addresses;
+    return this;
+  }
+
+  public BasicDetails addAddressesItem(Address addressesItem) {
+    if (this.addresses == null) {
+      this.addresses = new ArrayList<Address>();
+    }
+    this.addresses.add(addressesItem);
+    return this;
+  }
+
+  /**
+   * Get addresses
+   * @return addresses
+   **/
+  @Schema(description = "")
+      @Valid
+    public List<Address> getAddresses() {
+    return addresses;
+  }
+
+  public void setAddresses(List<Address> addresses) {
+    this.addresses = addresses;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -168,12 +226,14 @@ public class BasicDetails   {
         Objects.equals(this.firstName, basicDetails.firstName) &&
         Objects.equals(this.lastName, basicDetails.lastName) &&
         Objects.equals(this.age, basicDetails.age) &&
-        Objects.equals(this.dob, basicDetails.dob);
+        Objects.equals(this.dob, basicDetails.dob) &&
+        Objects.equals(this.partyDetails, basicDetails.partyDetails) &&
+        Objects.equals(this.addresses, basicDetails.addresses);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, partnerKey, firstName, lastName, age, dob);
+    return Objects.hash(id, partnerKey, firstName, lastName, age, dob, partyDetails, addresses);
   }
 
   @Override
@@ -187,6 +247,8 @@ public class BasicDetails   {
     sb.append("    lastName: ").append(toIndentedString(lastName)).append("\n");
     sb.append("    age: ").append(toIndentedString(age)).append("\n");
     sb.append("    dob: ").append(toIndentedString(dob)).append("\n");
+    sb.append("    partyDetails: ").append(toIndentedString(partyDetails)).append("\n");
+    sb.append("    addresses: ").append(toIndentedString(addresses)).append("\n");
     sb.append("}");
     return sb.toString();
   }

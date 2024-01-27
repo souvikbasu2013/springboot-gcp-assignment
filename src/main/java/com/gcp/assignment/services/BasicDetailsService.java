@@ -3,13 +3,16 @@ package com.gcp.assignment.services;
 import java.util.List;
 import java.util.Optional;
 
+import org.kie.api.runtime.KieContainer;
+import org.kie.api.runtime.KieSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import com.gcp.assignment.entities.BasicDetailsEntity;
-import com.gcp.assignment.exception.*;
+import com.gcp.assignment.exception.BasicDetailsNameNotFoundException;
+import com.gcp.assignment.exception.BasicDetailsNotFoundException;
+import com.gcp.assignment.model.BasicDetails;
+import com.gcp.assignment.model.PartyMasterData;
 
 import jakarta.transaction.Transactional;
 
@@ -17,6 +20,9 @@ import jakarta.transaction.Transactional;
 public class BasicDetailsService {
 
 	@Autowired com.gcp.assignment.repositories.BasicDetailsRepository BasicDetailsRepository;
+	
+	@Autowired
+    private KieContainer kieContainer;
 	
 	public List<BasicDetailsEntity> getAllBasicDetailsEntitys() {
 		return BasicDetailsRepository.findAll();
@@ -63,4 +69,21 @@ public class BasicDetailsService {
 		}
 		
 	}
+ 
+    public void getPartyTypeChecker(BasicDetails basicDetails) {
+        KieSession kieSession = kieContainer.newKieSession();
+        //kieSession.setGlobal("orderDiscount", orderDiscount);
+        kieSession.insert(basicDetails);
+        kieSession.fireAllRules();
+        kieSession.dispose();
+    }
+    
+    public PartyMasterData getPartyDataValidator(PartyMasterData partyMasterData) {
+        KieSession kieSession = kieContainer.newKieSession();
+        //kieSession.setGlobal("orderDiscount", orderDiscount);
+        kieSession.insert(partyMasterData);
+        kieSession.fireAllRules();
+        kieSession.dispose();
+        return partyMasterData;
+    }
 }

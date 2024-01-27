@@ -1,0 +1,29 @@
+import com.gcp.assignment.model.BasicDetails
+
+dialect "mvel"
+
+rule "Senior Citizen Checker"
+	when
+		BasicDetails(age>60)
+	then
+		System.out.println("senior citizen party");
+end
+rule "Middle Age Checker"
+	when
+		BasicDetails(age>30, age<60)
+	then
+		System.out.println("middle age party");
+end
+rule "Junior Checker"
+	when
+		BasicDetails(age<30)
+	then
+		System.out.println("junior party");
+end
+
+
+
+
+
+
+

@@ -149,12 +149,75 @@ components:
           type: string
           format: yyyy-mm-dd
           example: 2023-12-15
-#        AddressDetails:
-#          $ref: '#/components/schemas/AddressDetails'
+        PartyDetails:
+          $ref: '#/components/schemas/Party'
+        addresses:
+          items:
+            $ref: '#/components/schemas/Address'
+          type: array
+          minItems: 0
 #        ContactDetails:
 #          $ref: '#/components/schemas/ContactDetails'
       xml:
         name: BasicDetails
+    Party:
+      type: object
+      properties:
+        partyId:
+          type: integer
+          format: int64
+          example: 123
+        partyNumber:
+          type: string
+          example: "C000123"
+        partyType:
+          type: string
+          enum:
+          - "Natural Person"
+          - "Legal Entity"
+        createdBy:
+          type: string
+          example: "John Doe"
+        createdDate:
+          type: string
+          format: yyyy-mm-dd
+          example: 2023-12-15
+        updatedBy:
+          type: string
+          example: "John Doe"
+        updatedDate:
+          type: string
+          format: yyyy-mm-dd
+          example: 2023-12-15
+    Address:
+      type: object
+      properties:
+        addressId:
+          type: integer
+          example: 123
+        addressType:
+          type: string
+          enum:
+            - Auxiliary Address
+            - Physical Address
+            - Work Address
+          example: "Physical Address"
+        AddressStates:
+            type: array
+            items:
+              $ref: '#/components/schemas/AddressState'
+    AddressState:
+      type: object
+      properties:
+        streetName:
+          type: string
+          example: "1 wonton street"
+        pobox:
+          type: string
+          example: "201243"
+        countryCode:
+          type: string
+          example: "IND"
     ApiResponse:
       type: object
       properties:

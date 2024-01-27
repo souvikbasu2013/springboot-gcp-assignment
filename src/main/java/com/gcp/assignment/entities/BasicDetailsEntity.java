@@ -55,4 +55,11 @@ public class BasicDetailsEntity {
 	@Column(name = "DOB", length = 50, nullable = false)
 	private String dob;
 	
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "PARTYID", referencedColumnName = "PARTYID")
+    private PartyEntity party;
+	
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "basicDetail", cascade = CascadeType.ALL)
+    private List<AddressEntity> address;
+	
 }

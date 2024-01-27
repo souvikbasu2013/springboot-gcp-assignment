@@ -1,6 +1,13 @@
-insert into basic_detail (ID,PARTNERKEY,FIRST_NAME,LAST_NAME,AGE,DOB) 
-values(101,'KEY123','Peter','Hobbs',40,'1983-12-20');
-insert into basic_detail (ID,PARTNERKEY,FIRST_NAME,LAST_NAME,AGE,DOB) 
-values(102,'KEY124','Bill','Thomas',30,'1993-10-15');
-insert into basic_detail (ID,PARTNERKEY,FIRST_NAME,LAST_NAME,AGE,DOB) 
-values(103,'KEY125','Tom','Brooks',35,'1988-05-09');
+insert into party(PARTYID,PARTY_NUMBER,PARTY_TYPE,CREATED_BY,CREATED_DATE,UPDATED_BY,UPDATED_DATE)
+values(1001,'C0001001','Natural Person','John Doe','1983-12-20','John Doe','1983-12-20');
+insert into party(PARTYID,PARTY_NUMBER,PARTY_TYPE,CREATED_BY,CREATED_DATE,UPDATED_BY,UPDATED_DATE)
+values(1002,'C0001002','Natural Person','John Doe2','1983-12-20','John Doe2','1983-12-20');
+insert into party(PARTYID,PARTY_NUMBER,PARTY_TYPE,CREATED_BY,CREATED_DATE,UPDATED_BY,UPDATED_DATE)
+values(1003,'C0001003','Legal Entity','John Doe3','1983-12-20','John Doe3','1983-12-20');
+
+insert into basic_detail (ID,PARTYID,PARTNERKEY,FIRST_NAME,LAST_NAME,AGE,DOB) 
+values(101,1001,'KEY123','Peter','Hobbs',40,'1983-12-20');
+insert into basic_detail (ID,PARTYID,PARTNERKEY,FIRST_NAME,LAST_NAME,AGE,DOB) 
+values(102,1002,'KEY124','Bill','Thomas',30,'1993-10-15');
+insert into basic_detail (ID,PARTYID,PARTNERKEY,FIRST_NAME,LAST_NAME,AGE,DOB) 
+values(103,1003,'KEY125','Tom','Brooks',35,'1988-05-09');

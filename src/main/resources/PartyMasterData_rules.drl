@@ -1,0 +1,23 @@
+import com.gcp.assignment.model.PartyMasterData
+
+dialect "mvel"
+
+rule "Natural Party Data Validator"
+	when
+		PartyMasterData(partnerType=="Natural Person", (firstName==null || lastName==null))
+	then
+		PartyMasterData.setValidationIdentifier("Invalid Natural Party")
+end
+rule "Legal Entity Data Validator"
+	when
+		PartyMasterData(partnerType=="Legal Entity", (age==null || dob==null))
+	then
+		PartyMasterData.setValidationIdentifier("Invalid Legal Entity")
+end
+
+
+
+
+
+
+
